@@ -1,25 +1,34 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
+import './style/Style.css'
 
 class App extends Component {
+  constructor() {
+    super()
+    this.state = {
+      profil: '',
+    }
+  }
+
   render() {
+
+    let klik = (e) => {
+      this.setState({
+        profil: `https://robohash.org/${this.refs.nama.value}`
+      })
+      return (
+        <img src={this.state.profil}/>
+      )
+    }
+
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <input ref="nama" type="text" placeholder="Kertik Nama Anda.." /><br/>
+        <button onClick={klik} className="btn btn-success">Buat Profilku</button>
+        <div>
+          <img className="imgbg" src={this.state.profil}/>
+        </div>
       </div>
     );
   }
